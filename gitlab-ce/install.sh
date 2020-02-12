@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Description: Install Gitlab-CE on CentOS7
+# Description: Install Gitlab-CE on CentOS
 # Author: Gin Gu <bobo1314love@vip.qq.com>
 # Version: 1.0.0
 # Creation Time: 2020/02/08 22:06
@@ -12,7 +12,7 @@ cat > /etc/yum.repos.d/gitlab-ce.repo << EOF
 [gitlab-ce]
 name=Gitlab CE
 enabled=1
-baseurl=https://mirrors.tuna.tsinghua.edu.cn/gitlab-ce/yum/el7/
+baseurl=https://mirrors.tuna.tsinghua.edu.cn/gitlab-ce/yum/el$releasever/
 gpgcheck=0
 EOF
 

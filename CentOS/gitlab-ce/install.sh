@@ -5,10 +5,11 @@
 # Version: 1.0.0
 # Creation Time: 2020/02/08 22:06
 
+set -e
 export PATH=~/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 # Generate Gitlab-CE repo
-cat > /etc/yum.repos.d/gitlab-ce.repo << EOF
+sudo cat > /etc/yum.repos.d/gitlab-ce.repo << EOF
 [gitlab-ce]
 name=Gitlab CE
 enabled=1
@@ -17,10 +18,10 @@ gpgcheck=0
 EOF
 
 # Make cache
-yum makecache
+sudo yum makecache fast
 
 # Install Gitlab-CE
-yum install gitlab-ce -y
+sudo yum install gitlab-ce -y
 
 # Configure and Start Gitlab
-gitlab-ctl reconfigure
+sudo gitlab-ctl reconfigure

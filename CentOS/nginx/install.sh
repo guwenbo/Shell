@@ -8,11 +8,14 @@
 set -e
 export PATH=~/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
+# CentOS Base Release Version
+BASE_RELEASE=$(rpm -q centos-release | cut -d - -f 3)
+
 # Generate Nginx repo
 sudo cat > /etc/yum.repos.d/nginx.repo << EOF
 [nginx]
 name=Nginx Stable
-baseurl=http://nginx.org/packages/centos/$releasever/$basearch/
+baseurl=http://nginx.org/packages/centos/${BASE_RELEASE}/$(arch)/
 gpgcheck=1
 enabled=1
 gpgkey=https://nginx.org/keys/nginx_signing.key
@@ -24,3 +27,6 @@ sudo yum makecache fast
 
 # Install Nginx
 sudo yum install nginx -y
+
+# Start Nginx
+sudo systemctl start nginx
